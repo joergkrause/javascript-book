@@ -1,14 +1,16 @@
-# Book Support
+# Buch-Unterstützung
 
-This is the support repository for the Book "Regular Expressions in JavaSript"
+Das ist das Repository für "TypeScript 2".
 
-# The book
+# Das Buch
 
-The regular expressions book is a small work for those who want to learn regular expression using JavaScript or TypeScript. It's available in German and English.  
+Das Buch ist derzeit nur in Deutscher Sprache verfügbar.
 
-## German
+The Book is currently available in German only.
 
-Please find the electroniv version here:
+## Deutsch
+
+Die verschiedenene Versionen finden Sie hier -- 5 Formate, DRM frei und gedruckt --:
 
 * PDF, EPUB, and MOBI: [https://leanpub.com/typescript-basics](https://leanpub.com/typescript-basics) -- provided by LeanPub
 * For your Kindle: [https://www.amazon.de/dp/B01MRQIAML](https://www.amazon.de/dp/B01MRQIAML) -- provided by Amazon KDP
