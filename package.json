@@ -1,0 +1,10 @@
+{
+  "name": "samples-typescript-book",
+  "version": "1.0.0",
+  "description": "Beispiele für das Buch Einführung in TypeScript",
+  "author": "Jörg Krause",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^9.4.7"
+  }
+}
