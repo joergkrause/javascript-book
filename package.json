@@ -5,6 +5,7 @@
   "author": "Jörg Krause",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^9.4.7"
+    "@types/node": "^9.4.7",
+    "reflect-metadata": "^0.1.12"
   }
 }
