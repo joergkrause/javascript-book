@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "lib":[
+      "es2015"
+    ],
+    "target": "es5"
+  },
+  "files": [
+    "async.ts"
+  ]
+}

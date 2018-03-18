@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "lib":[
+      "es2015", "esnext.asynciterable"
+    ],
+    "target": "es6"
+  },
+  "files": [
+    "yield.ts", "yieldloop.ts", "asyncyield.ts"
+  ]
+}
