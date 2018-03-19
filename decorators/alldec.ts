@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-function logPropertyAll(target: any, key: string) {
+function logAllProperty(target: any, key: string) {
   var _val = this[key];
   var getter = function () {
     console.log(`Get: ${key} => ${_val}`);
@@ -20,46 +20,25 @@ function logPropertyAll(target: any, key: string) {
   }
 }
 
-function logMethodAll(target: Function, key: string, descriptor: any) {
-  var originalMethod = descriptor.value;
-  descriptor.value = function (...args: any[]) {
-
-    var metadataKey = `__log_${key}_parameters`;
-    var indices = target[metadataKey];
-
-    if (Array.isArray(indices)) { 
-
-      for (var i = 0; i < args.length; i++) { 
-
-        if (indices.indexOf(i) !== -1) { 
-
-          var arg = args[i];
-          var argStr = JSON.stringify(arg) || arg.toString();
-          console.log(`${key} arg[${i}]: ${argStr}`);
-        }
-      }
-      var result = originalMethod.apply(this, args);
-      return result;
-    }
-    else {
-
-      var a = args.map(a => (JSON.stringify(a) || a.toString())).join();
-      var result = originalMethod.apply(this, args);
+function logAllMethod(target: Object, key: string, descriptor: any) {
+  return {
+    value: function (...args: any[]) {
+      var a = args.map(a => JSON.stringify(a)).join();
+      var result = descriptor.value.apply(this, args);
       var r = JSON.stringify(result);
       console.log(`Call: ${key}(${a}) => ${r}`);
       return result;
     }
-  }
-  return descriptor;
+  };
 }
 
-function logParameterAll(target: any, key: string, index: number) {
+function logAllParameter(target: any, key: string, index: number) {
   var indices = Reflect.getMetadata(`log_${key}_parameters`, target, key) || [];
   indices.push(index); 
   Reflect.defineMetadata(`log_${key}_parameters`, indices, target, key);
 }
 
-function logClassAll(target: any) {
+function logAllClass(target: any) {
   // Konstruktor merken
   var original = target;
   // Unterstützung der Instanziierung
@@ -80,37 +59,46 @@ function logClassAll(target: any) {
   // Neuer Konstruktor
   return f;
 }
-function alllog(...args : any[]) {
+
+function logAll(...args : any[]) {
+  // Fix für Property
+  if (args.length === 3 && args[2] === undefined){
+    args.pop();
+  }
   switch(args.length) {
     case 1:
-      return logClassAll.apply(this, args);
+      return logAllClass.apply(args[0], args);
     case 2:
-      return logPropertyAll.apply(this, args);
+      return logAllProperty.apply(args[0], args);
     case 3:
       if(typeof args[2] === "number") {
-        return logParameterAll.apply(this, args);
+        return logAllParameter.apply(args[0], args);
       }
-      return logMethodAll.apply(this, args);
+      return logAllMethod.apply(args[0], args);
     default:
-      throw new Error("Decorators are not valid here!");
+      throw new Error("Decorators are not valid here! ");
   }
 }
 
-@alllog()
+@logAll
 class AllPerson { 
 
-  @alllog()
+  @logAll
   public name: string;
 
+  @logAll
   public surname: string;
 
-  constructor(name : string, surname : string) { 
-    this.name = name;
-    this.surname = surname;
+  constructor(n : string, sn : string) { 
+    this.name = n;
+    this.surname = sn;
   }
 
-  @alllog()
-  public saySomething(@alllog() something : string) : string { 
+  @logAll
+  public saySomething(@logAll something : string) : string { 
     return this.name + " " + this.surname + " says: " + something; 
   }
 }
+
+const allPerson = new AllPerson("Alwin", "All");
+allPerson.saySomething("Hallo");

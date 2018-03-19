@@ -4,9 +4,10 @@
       "es2015"
     ],
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "target": "es5"
   },
   "files": [
-    "funcdec.ts", "propdec.ts", "classdec.ts", "paramdec.ts", "alldec.ts", "factorydec.ts"
+    "logreflect.ts", "logreflectp.ts"
   ]
 }
