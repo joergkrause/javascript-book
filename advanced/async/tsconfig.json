@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
     "lib":[
-      "es2015"
+      "es2015", "dom"
     ],
     "target": "es5"
   },
   "files": [
-    "async.ts"
+    "async.ts",
+    "promise.ts"
   ]
 }

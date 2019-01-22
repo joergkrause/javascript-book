@@ -3,9 +3,17 @@
   "version": "1.0.0",
   "description": "Beispiele für das Buch Einführung in TypeScript",
   "author": "Jörg Krause",
+  "scripts": {
+    "test": "jest --config ./testing/jest.config.js"
+  },
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^23.3.13",
     "@types/node": "^9.4.7",
-    "reflect-metadata": "^0.1.12"
-  }
+    "jest": "^23.6.0",
+    "reflect-metadata": "^0.1.12",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.4"
+  },
+  "dependencies": {}
 }
